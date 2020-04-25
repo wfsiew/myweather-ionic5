@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Weather - Daily</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card *ngFor="let o of list">
+    <ion-card-header>
+      <ion-card-subtitle>{{ epochToJsDate(o.dt) }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Sunrise: {{ epochToJsDate(o.sunrise) }}</p>
+      <p>Sunset: {{ epochToJsDate(o.sunset) }}</p>
+      <ion-list>
+        <ion-item *ngFor="let w of o.weather" lines="none">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="getIcon(w.icon)"></ion-img>
+          </ion-thumbnail>
+          <ion-label>{{ w.main }}</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>{{ o.temp.morn }} (Morn)</div>
+          </ion-col>
+          <ion-col>
+            <div>{{ o.temp.day }} (Day)</div>
+          </ion-col>
+          <ion-col>
+            <div>{{ o.temp.eve }} (Eve)</div>
+          </ion-col>
+          <ion-col>
+            <div>{{ o.temp.night }} (Night)</div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <div class="ion-text-center">deg. Celsius</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

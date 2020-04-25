@@ -1,20 +1,86 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      My Weather
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>
+        <h4>Current Weather</h4>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label>dt</ion-label>
+        <div>{{ epochToJsDate(current.dt) }}</div>
+      </ion-item>
+      <ion-item>
+        <ion-label>sunrise</ion-label>
+        <div>{{ epochToJsDate(current.sunrise) }}</div>
+      </ion-item>
+      <ion-item>
+        <ion-label>sunset</ion-label>
+        <div>{{ epochToJsDate(current.sunset) }}</div>
+      </ion-item>
+      <ion-item>
+        <ion-label>temp</ion-label>
+        <div>{{ current.temp }} deg. Celsius</div>
+      </ion-item>
+      <ion-item>
+        <ion-label>feels_like</ion-label>
+        <div>{{ current.feels_like }} deg. Celsius</div>
+      </ion-item>
+      <ion-item>
+        <ion-label>pressure</ion-label>
+        <div>{{ current.pressure }} hPa</div>
+      </ion-item>
+      <ion-item>
+        <ion-label>humidity</ion-label>
+        <div>{{ current.humidity }} %</div>
+      </ion-item>
+      <ion-item>
+        <ion-label>dew_point</ion-label>
+        <div>{{ current.dew_point }} deg. Celsius</div>
+      </ion-item>
+      <ion-item>
+        <ion-label>uvi</ion-label>
+        <div>{{ current.uvi }}</div>
+      </ion-item>
+      <ion-item>
+        <ion-label>clouds</ion-label>
+        <div>{{ current.clouds }} %</div>
+      </ion-item>
+      <ion-item>
+        <ion-label>visibility</ion-label>
+        <div>{{ current.visibility }} meters</div>
+      </ion-item>
+      <ion-item>
+        <ion-label>wind_speed</ion-label>
+        <div>{{ current.wind_speed }} m/s</div>
+      </ion-item>
+      <ion-item>
+        <ion-label>wind_deg</ion-label>
+        <div>{{ current.wind_deg }} deg.</div>
+      </ion-item>
+
+      <ion-list>
+        <ion-item *ngFor="let w of current.weather">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="getIcon(w.icon)"></ion-img>
+          </ion-thumbnail>
+          <ion-label>{{ w.main }}</ion-label>
+        </ion-item>
+      </ion-list>
+
+    </ion-card-content>
+  </ion-card>
 </ion-content>

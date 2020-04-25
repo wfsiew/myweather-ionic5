@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Weather - Hourly</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card *ngFor="let o of list">
+    <ion-card-header>
+      <ion-card-subtitle>{{ epochToJsDate(o.dt) }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let w of o.weather" lines="none">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="getIcon(w.icon)"></ion-img>
+          </ion-thumbnail>
+          <ion-label>{{ w.main }}</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>{{ o.temp }}</div>
+          </ion-col>
+          <ion-col>
+            <div>{{ o.feels_like }}</div>
+          </ion-col>
+          <ion-col>
+            <div>deg. Celsius</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
