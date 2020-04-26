@@ -14,14 +14,14 @@
       <ion-card-subtitle>{{ epochToJsDate(o.dt) }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <ion-list>
+      <div>
         <ion-item *ngFor="let w of o.weather" lines="none">
           <ion-thumbnail slot="start">
             <ion-img [src]="getIcon(w.icon)"></ion-img>
           </ion-thumbnail>
           <ion-label>{{ w.main }}</ion-label>
         </ion-item>
-      </ion-list>
+      </div>
 
       <ion-grid>
         <ion-row>
