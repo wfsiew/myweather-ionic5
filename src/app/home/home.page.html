@@ -72,14 +72,12 @@
         <div>{{ current.wind_deg }} deg.</div>
       </ion-item>
 
-      <div>
-        <ion-item *ngFor="let w of current.weather" lines="none">
-          <ion-thumbnail slot="start">
-            <ion-img [src]="getIcon(w.icon)"></ion-img>
-          </ion-thumbnail>
-          <ion-label>{{ w.main }}</ion-label>
-        </ion-item>
-      </div>
+      <ion-item *ngFor="let w of current.weather" lines="none">
+        <ion-thumbnail slot="start">
+          <ion-img [src]="getIcon(w.icon)"></ion-img>
+        </ion-thumbnail>
+        <ion-label>{{ w.main }}</ion-label>
+      </ion-item>
 
     </ion-card-content>
   </ion-card>

@@ -16,14 +16,13 @@
     <ion-card-content>
       <p>Sunrise: {{ epochToJsDate(o.sunrise) }}</p>
       <p>Sunset: {{ epochToJsDate(o.sunset) }}</p>
-      <div>
-        <ion-item *ngFor="let w of o.weather" lines="none">
-          <ion-thumbnail slot="start">
-            <ion-img [src]="getIcon(w.icon)"></ion-img>
-          </ion-thumbnail>
-          <ion-label>{{ w.main }}</ion-label>
-        </ion-item>
-      </div>
+
+      <ion-item *ngFor="let w of o.weather" lines="none">
+        <ion-thumbnail slot="start">
+          <ion-img [src]="getIcon(w.icon)"></ion-img>
+        </ion-thumbnail>
+        <ion-label>{{ w.main }}</ion-label>
+      </ion-item>
 
       <ion-grid>
         <ion-row>
